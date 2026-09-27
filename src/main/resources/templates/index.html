@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todo App</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #f4f5f7; margin: 0; padding: 40px 16px; }
+        .card { max-width: 520px; margin: 0 auto; background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+        h1 { margin: 0 0 16px; font-size: 1.6rem; }
+        form.add { display: flex; gap: 8px; margin-bottom: 20px; }
+        form.add input { flex: 1; padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+        button { cursor: pointer; border: 0; border-radius: 8px; padding: 10px 14px; font-size: .95rem; }
+        .primary { background: #2563eb; color: #fff; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid #eee; }
+        li form { margin: 0; }
+        .title { flex: 1; word-break: break-word; }
+        .done .title { text-decoration: line-through; color: #999; }
+        .check { background: none; font-size: 1.2rem; padding: 0 4px; }
+        .delete { background: #fee2e2; color: #b91c1c; padding: 6px 10px; }
+        .empty { color: #888; text-align: center; padding: 20px 0; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>My Todos</h1>
+
+    <form class="add" th:action="@{/todos}" method="post">
+        <input name="title" placeholder="What needs to be done?" maxlength="200" required autofocus>
+        <button class="primary" type="submit">Add</button>
+    </form>
+
+    <p class="empty" th:if="${todos.isEmpty()}">Nothing to do. 🎉</p>
+
+    <ul>
+        <li th:each="todo : ${todos}" th:classappend="${todo.completed} ? 'done'">
+            <form th:action="@{/todos/{id}/toggle(id=${todo.id})}" method="post">
+                <button class="check" type="submit" th:text="${todo.completed} ? '☑' : '☐'"
+                        th:title="${todo.completed} ? 'Mark as not done' : 'Mark as done'"></button>
+            </form>
+            <span class="title" th:text="${todo.title}"></span>
+            <form th:action="@{/todos/{id}/delete(id=${todo.id})}" method="post">
+                <button class="delete" type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
