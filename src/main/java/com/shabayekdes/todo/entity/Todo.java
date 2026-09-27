@@ -1,4 +1,4 @@
-package com.example.todo;
+package com.shabayekdes.todo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

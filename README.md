@@ -105,12 +105,15 @@ You can browse the database at http://localhost:8080/h2-console with these setti
 ## Project structure
 
 ```
-src/main/java/com/example/todo/
-├── TodoApplication.java     # entry point
-├── Todo.java                # todo entity
-├── TodoRepository.java      # database access
-├── TodoController.java      # web page routes
-└── TodoApiController.java   # REST API
+src/main/java/com/shabayekdes/todo/
+├── TodoApplication.java         # entry point
+├── entity/
+│   └── Todo.java                # todo entity
+├── repository/
+│   └── TodoRepository.java      # database access
+└── controller/
+    ├── TodoController.java      # web page routes
+    └── TodoApiController.java   # REST API
 src/main/resources/
 ├── application.properties   # configuration
 └── templates/index.html     # web page

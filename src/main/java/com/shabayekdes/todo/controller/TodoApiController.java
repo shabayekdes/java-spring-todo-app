@@ -1,8 +1,11 @@
-package com.example.todo;
+package com.shabayekdes.todo.controller;
 
 import java.util.List;
 
 import jakarta.validation.Valid;
+
+import com.shabayekdes.todo.entity.Todo;
+import com.shabayekdes.todo.repository.TodoRepository;
 
 import lombok.RequiredArgsConstructor;
 
